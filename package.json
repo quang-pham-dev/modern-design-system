@@ -1,5 +1,5 @@
 {
-  "name": "my-turborepo",
+  "name": "modern-design-system",
   "private": true,
   "scripts": {
     "build": "turbo run build",
