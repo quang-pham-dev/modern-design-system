@@ -1,84 +1,109 @@
-# Turborepo starter
+# Modern Design System
 
-This Turborepo starter is maintained by the Turborepo core team.
+A comprehensive and scalable design system built with React and TypeScript, providing a collection of reusable components and utilities for building modern web applications.
 
-## Using this example
+## Overview
 
-Run the following command:
+This project is a monorepo built with Turborepo that provides a robust foundation for creating consistent and maintainable user interfaces. It includes a complete set of design tokens, React components, and development tools to streamline the UI development process.
 
-```sh
-npx create-turbo@latest
+## Key Features
+
+- 🎨 **Consistent Design Language**: Unified design tokens and theming system
+- 📦 **Component Library**: Pre-built, customizable React components
+- 🛠️ **Developer Tools**: Modern development workflow with TypeScript and ESLint
+- 📱 **Responsive Design**: Mobile-first approach with flexible layouts
+- 🧪 **Testing Utilities**: Comprehensive testing setup with Vitest
+- 📚 **Interactive Documentation**: Storybook integration for component showcasing
+
+## Project Structure
+
+### Apps
+
+- `web`: Main Next.js application showcasing the design system
+- `storybook`: Interactive component documentation and development environment
+
+### Packages
+
+- `@modern-design-system/core`: Core React components and utilities
+- `@modern-design-system/tokens`: Design tokens and theming system
+- `@modern-design-system/hooks`: Custom React hooks collection
+- `@modern-design-system/utils`: Shared utility functions
+- `@modern-design-system/eslint-config`: ESLint configurations
+- `@modern-design-system/typescript-config`: TypeScript configurations
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18.x or later
+- pnpm 8.x or later
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/quang-pham-dev/modern-design-system.git
+
+# Install dependencies
+pnpm install
 ```
 
-## What's inside?
+### Development
 
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
+```bash
+# Start development environment
 pnpm dev
+
+# Build all packages
+pnpm build
+
+# Run tests
+pnpm test
 ```
 
-### Remote Caching
+## Development Workflow
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+### Component Development
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+1. Create new components in `packages/core/src/components`
+2. Add stories in Storybook for visual testing and documentation
+3. Write unit tests using Vitest
+4. Update documentation as needed
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+### Quality Assurance
 
-```
-cd my-turborepo
+- TypeScript for type safety
+- ESLint for code quality
+- Prettier for consistent formatting
+- Vitest for unit testing
+- Storybook for visual testing
+
+## Remote Caching
+
+This project uses Turborepo's Remote Caching feature to optimize build times across team members and CI/CD pipelines. To enable Remote Caching:
+
+```bash
+# Login to your Vercel account
 npx turbo login
-```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
+# Link your project to Remote Cache
 npx turbo link
 ```
 
-## Useful Links
+## Author
 
-Learn more about the power of Turborepo:
+Quang Pham - Creator and maintainer of Modern Design System
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Resources
+
+- [Documentation](https://modern-design-system.com)
+- [Component Storybook](https://modern-design-system-storybook.com)
+- [GitHub Repository](https://github.com/quang-pham-dev/modern-design-system)
+
+---
+
+Built with ❤️ using [Turborepo](https://turbo.build/repo) and [React](https://reactjs.org)

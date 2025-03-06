@@ -1,24 +1,42 @@
 {
-  "name": "@repo/eslint-config",
+  "name": "@modern-design-system/eslint-config",
   "version": "0.0.0",
   "type": "module",
   "private": true,
   "exports": {
+    ".": "./index.js",
     "./base": "./base.js",
     "./next-js": "./next.js",
-    "./react-internal": "./react-internal.js"
+    "./react-internal": "./react-internal.js",
+    "./prettier.config": "./prettier.config.cjs"
+  },
+  "dependencies": {
+    "@eslint/js": "^9.21.0",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "typescript-eslint": "^8.24.1"
   },
   "devDependencies": {
-    "@eslint/js": "^9.21.0",
-    "@next/eslint-plugin-next": "^15.2.1",
+    "@next/eslint-plugin-next": "^15.1.6",
+    "@typescript-eslint/eslint-plugin": "^8.25.0",
+    "@typescript-eslint/parser": "^8.25.0",
     "eslint": "^9.21.0",
-    "eslint-config-prettier": "^10.0.2",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-only-warn": "^1.1.0",
+    "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-react": "^7.37.4",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-turbo": "^2.4.4",
-    "globals": "^16.0.0",
-    "typescript": "^5.8.2",
-    "typescript-eslint": "^8.26.0"
-  }
+    "eslint-plugin-turbo": "^2.4.0",
+    "globals": "^15.15.0",
+    "prettier": "^3.5.0",
+    "typescript": "^5.7.3"
+  },
+  "description": "Collection of internal eslint configurations.",
+  "main": "base.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

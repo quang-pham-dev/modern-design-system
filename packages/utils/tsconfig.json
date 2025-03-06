@@ -1,0 +1,11 @@
+{
+  "extends": "@modern-design-system/typescript-config/react-library.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "jsxImportSource": "@emotion/react",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@modern-design-system/theme": ["../theme/src"]
+    }
+  }
+}

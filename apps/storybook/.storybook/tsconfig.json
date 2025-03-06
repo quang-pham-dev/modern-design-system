@@ -1,0 +1,21 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react",
+    "baseUrl": "../",
+    "paths": {
+      "@/*": ["../../packages/components/src/*"],
+      "@modern-design-system/theme/*": ["../../packages/theme/src/*"],
+      "@modern-design-system/theme": ["../../packages/theme/src"],
+      "@modern-design-system/components/*": ["../../packages/tokens/src/*"],
+      "@modern-design-system/components": ["../../packages/tokens/src"],
+      "@modern-design-system/hooks/*": ["../../packages/hooks/src/*"],
+      "@modern-design-system/hooks": ["../../packages/hooks/src"]
+    }
+  },
+  "include": [
+    "../src/**/*",
+    "../.storybook/**/*",
+    "../../packages/components/src/**/*"
+  ]
+}

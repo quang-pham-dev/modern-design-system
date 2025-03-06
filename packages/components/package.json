@@ -1,0 +1,50 @@
+{
+  "name": "@modern-design-system/components",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "require": "./src/index.ts"
+    },
+    "./*": "./src/*.{ts,tsx}"
+  },
+  "scripts": {
+    "generate:component": "turbo gen react-component",
+    "check-types": "tsc --noEmit",
+    "test:watch": "vitest",
+    "build": "tsup",
+    "lint": "eslint src/",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@modern-design-system/eslint-config": "workspace:*",
+    "@modern-design-system/typescript-config": "workspace:*",
+    "@storybook/react": "^8.6.3",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@turbo/gen": "^2.4.4",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.13.9",
+    "@types/react": "19.0.10",
+    "@types/react-dom": "19.0.4",
+    "@types/testing-library__react": "^10.2.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "clsx": "^2.1.1",
+    "eslint": "^9.21.0",
+    "jsdom": "^26.0.0",
+    "tsup": "^8.4.0",
+    "typescript": "5.8.2",
+    "vitest": "^3.0.7"
+  },
+  "dependencies": {
+    "@modern-design-system/hooks": "workspace:*",
+    "@modern-design-system/theme": "workspace:*",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}
