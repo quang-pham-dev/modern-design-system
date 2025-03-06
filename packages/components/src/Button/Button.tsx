@@ -90,7 +90,7 @@ export interface ButtonProps
  * @param {Theme} theme - The current theme object containing design tokens
  * @returns {ReturnType<typeof css>} - Emotion CSS styles for base button appearance
  */
-const getBaseStyles = (theme: Theme) => css`
+const getBaseStyles = (theme: Theme): ReturnType<typeof css> => css`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -125,7 +125,7 @@ const getVariantStyles = (
   theme: Theme,
   variant: ButtonVariant,
   color: ButtonColor,
-) => {
+): ReturnType<typeof css> => {
   const colorMap = {
     default: theme.colors.primary,
     success: {
@@ -191,7 +191,10 @@ const getVariantStyles = (
  * @param {ButtonSize} size - The button size (xs, sm, md, lg)
  * @returns {ReturnType<typeof css>} - Emotion CSS styles for the specific size
  */
-const getSizeStyles = (theme: Theme, size: ButtonSize) => {
+const getSizeStyles = (
+  theme: Theme,
+  size: ButtonSize,
+): ReturnType<typeof css> => {
   switch (size) {
     case 'xs':
       return css`
@@ -231,7 +234,7 @@ const getSizeStyles = (theme: Theme, size: ButtonSize) => {
  * Provides proper alignment and spacing for button children and icons
  * Adjusts gap spacing based on button size
  */
-const ContainerStyled = styled.button<{ theme: Theme; size?: ButtonSize }>`
+const ContainerStyled = styled.span<{ theme: Theme; size?: ButtonSize }>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
