@@ -11,7 +11,6 @@
   },
   "scripts": {
     "check-types": "tsc --noEmit",
-    "test:watch": "vitest",
     "build": "tsup",
     "lint": "eslint src/",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"

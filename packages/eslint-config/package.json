@@ -34,7 +34,8 @@
   "description": "Collection of internal eslint configurations.",
   "main": "base.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint .",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "keywords": [],
   "author": "",

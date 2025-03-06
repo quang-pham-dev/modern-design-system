@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "preview-storybook": "storybook dev -p 6006 --no-open",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "storybook": "storybook dev -p 6006"
   },
   "dependencies": {
     "react": "^19.0.0",
@@ -30,6 +31,8 @@
     "@storybook/react": "^8.6.3",
     "@storybook/react-vite": "^8.6.3",
     "@storybook/test": "^8.6.3",
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^15.0.0",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
