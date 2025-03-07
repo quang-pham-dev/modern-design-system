@@ -28,4 +28,5 @@ export const lightThemeColors: Colors = {
     dark: '#d32f2f',
     contrastText: '#ffffff',
   },
+  divider: '#e0e0e0',
 };

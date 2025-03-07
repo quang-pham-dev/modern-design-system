@@ -28,6 +28,11 @@ type LayoutProps = {
   maxHeight?: string | number;
   display?: string;
   overflow?: string;
+  position?: string;
+  top?: string | number;
+  bottom?: string | number;
+  left?: string | number;
+  right?: string | number;
 };
 
 type FlexProps = {
@@ -44,6 +49,10 @@ type StyleProps = {
   backgroundColor?: string;
   borderRadius?: string | number;
   border?: string;
+  borderBottom?: string;
+  borderTop?: string;
+  borderLeft?: string;
+  borderRight?: string;
   boxShadow?: string;
   textAlign?: string;
 };
@@ -79,6 +88,11 @@ const propToCssProperty = {
   maxHeight: 'max-height',
   display: 'display',
   overflow: 'overflow',
+  position: 'position',
+  top: 'top',
+  bottom: 'bottom',
+  left: 'left',
+  right: 'right',
 
   // Flex properties
   flexDirection: 'flex-direction',
@@ -93,6 +107,10 @@ const propToCssProperty = {
   backgroundColor: 'background-color',
   borderRadius: 'border-radius',
   border: 'border',
+  borderBottom: 'border-bottom',
+  borderTop: 'border-top',
+  borderLeft: 'border-left',
+  borderRight: 'border-right',
   boxShadow: 'box-shadow',
   textAlign: 'text-align',
 } as const;
@@ -162,7 +180,7 @@ const Box = forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
   // Transform regular props to prefixed props for the styled component
   const styledProps = Object.entries(rest).reduce<Record<string, unknown>>(
     (acc, [key, value]) => {
-      if (Object.prototype.hasOwnProperty.call(propToCssProperty, key)) {
+      if (Object.hasOwn(propToCssProperty, key)) {
         acc[`$${key}`] = value;
       } else {
         acc[key] = value;

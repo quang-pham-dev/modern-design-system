@@ -22,7 +22,20 @@ export type TypographyVariant =
   | 'body1'
   | 'body2'
   | 'caption'
-  | 'overline';
+  | 'overline'
+  | 'label';
+
+// Update FontWeight type to match the actual keys in theme.typography.fontWeights
+type FontWeight =
+  | 'hairline'
+  | 'thin'
+  | 'light'
+  | 'normal'
+  | 'medium'
+  | 'semibold'
+  | 'bold'
+  | 'extrabold'
+  | 'black';
 
 /**
  * Available text alignment options
@@ -72,6 +85,18 @@ export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
    * The color of the component
    */
   color?: string;
+
+  /**
+   * Font weight for the text
+   * @default 'normal'
+   */
+  weight?: FontWeight;
+
+  /**
+   * Number of lines to show
+   * @default undefined (show all lines)
+   */
+  numberOfLines?: number;
 }
 
 /**
@@ -141,6 +166,11 @@ const getVariantStyles = (theme: Theme, variant: TypographyVariant) => {
       text-transform: uppercase;
       letter-spacing: 0.08em;
     `,
+    label: css`
+      font-size: ${theme.typography.fontSizes.xs};
+      font-weight: ${theme.typography.fontWeights.medium};
+      line-height: ${theme.typography.lineHeights.normal};
+    `,
   };
 
   return variantMap[variant];
@@ -190,6 +220,8 @@ const StyledTypography = styled.p<{
   $noWrap: boolean;
   $gutterBottom: boolean;
   $color?: string;
+  $weight?: FontWeight;
+  $numberOfLines?: number;
 }>`
   margin: 0;
   font-family: ${({ theme }) => getFontFamilyStyles(theme as Theme)};
@@ -198,6 +230,18 @@ const StyledTypography = styled.p<{
   ${({ $noWrap }) => $noWrap && getNoWrapStyles()};
   ${({ $gutterBottom }) => $gutterBottom && getGutterBottomStyles()};
   ${({ $color }) => $color && `color: ${$color};`};
+  ${({ theme, $weight }) =>
+    $weight &&
+    `font-weight: ${(theme as Theme).typography.fontWeights[$weight]};`}
+  ${({ $numberOfLines }) =>
+    $numberOfLines &&
+    `
+      display: -webkit-box;
+      -webkit-line-clamp: ${$numberOfLines};
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    `}
 `;
 
 /**
@@ -222,6 +266,8 @@ const Typography = forwardRef<HTMLParagraphElement, TypographyProps>(
       noWrap = false,
       gutterBottom = false,
       color,
+      weight,
+      numberOfLines,
       children,
       ...props
     },
@@ -243,6 +289,7 @@ const Typography = forwardRef<HTMLParagraphElement, TypographyProps>(
       body2: 'p',
       caption: 'span',
       overline: 'span',
+      label: 'span',
     }[variant] as React.ElementType;
 
     return (
@@ -254,6 +301,8 @@ const Typography = forwardRef<HTMLParagraphElement, TypographyProps>(
         $noWrap={noWrap}
         $gutterBottom={gutterBottom}
         $color={color}
+        $weight={weight}
+        $numberOfLines={numberOfLines}
         theme={theme}
         {...props}
       >

@@ -28,4 +28,5 @@ export const darkThemeColors: Colors = {
     dark: '#e53935',
     contrastText: '#ffffff',
   },
+  divider: '#e0e0e0',
 };
