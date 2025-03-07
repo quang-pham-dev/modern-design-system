@@ -106,7 +106,6 @@ export const Default: Story = {
   args: {
     children: 'This is a basic Box',
     padding: '16px',
-    backgroundColor: '#cf2525',
     display: 'grid',
   },
 };
