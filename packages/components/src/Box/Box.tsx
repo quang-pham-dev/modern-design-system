@@ -6,225 +6,141 @@ import { useTheme } from '@modern-design-system/hooks';
 
 import type React from 'react';
 
-export interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
-  /**
-   * Padding applied to all sides
-   */
+// Define property groups for better organization
+type SpaceProps = {
   padding?: string | number;
-
-  /**
-   * Margin applied to all sides
-   */
+  paddingTop?: string | number;
+  paddingRight?: string | number;
+  paddingBottom?: string | number;
+  paddingLeft?: string | number;
   margin?: string | number;
+  marginTop?: string | number;
+  marginRight?: string | number;
+  marginBottom?: string | number;
+  marginLeft?: string | number;
+  gap?: string | number;
+};
 
-  /**
-   * Width of the box
-   */
+type LayoutProps = {
   width?: string | number;
-
-  /**
-   * Height of the box
-   */
   height?: string | number;
-
-  /**
-   * Background color
-   */
-  backgroundColor?: string;
-
-  /**
-   * Border radius
-   */
-  borderRadius?: string | number;
-
-  /**
-   * Border style
-   */
-  border?: string;
-
-  /**
-   * Display property
-   */
-  display?: string;
-
-  /**
-   * Box shadow
-   */
-  boxShadow?: string;
-
-  /**
-   * Overflow behavior
-   */
-  overflow?: string;
-
-  /**
-   * Text alignment
-   */
-  textAlign?: string;
-
-  /**
-   * Flex grow factor
-   */
-  grow?: number;
-
-  /**
-   * Flex shrink factor
-   */
-  shrink?: number;
-
-  /**
-   * Flex basis
-   */
-  basis?: string | number;
-
-  /**
-   * Justify content (for flex containers)
-   */
-  justifyContent?: string;
-
-  /**
-   * Align items (for flex containers)
-   */
-  alignItems?: string;
-
-  /**
-   * Align self (for flex items)
-   */
-  alignSelf?: string;
-
-  /**
-   * Maximum width
-   */
   maxWidth?: string | number;
-
-  /**
-   * Maximum height
-   */
   maxHeight?: string | number;
+  display?: string;
+  overflow?: string;
+};
 
-  /**
-   * The content of the box
-   */
+type FlexProps = {
+  flexDirection?: string;
+  justifyContent?: string;
+  alignItems?: string;
+  alignSelf?: string;
+  grow?: number;
+  shrink?: number;
+  basis?: string | number;
+};
+
+type StyleProps = {
+  backgroundColor?: string;
+  borderRadius?: string | number;
+  border?: string;
+  boxShadow?: string;
+  textAlign?: string;
+};
+
+export interface BoxProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    SpaceProps,
+    LayoutProps,
+    FlexProps,
+    StyleProps {
   children?: React.ReactNode;
 }
 
-const StyledBox = styled.div<{
-  $padding?: string | number;
-  $margin?: string | number;
-  $width?: string | number;
-  $height?: string | number;
-  $backgroundColor?: string;
-  $borderRadius?: string | number;
-  $border?: string;
-  $display?: string;
-  $boxShadow?: string;
-  $overflow?: string;
-  $textAlign?: string;
-  $grow?: number;
-  $shrink?: number;
-  $basis?: string | number;
-  $alignSelf?: string;
-  $justifyContent?: string;
-  $alignItems?: string;
-  $maxWidth?: string | number;
-  $maxHeight?: string | number;
-}>`
-  ${({ $padding }) =>
-    $padding &&
-    css`
-      padding: ${$padding};
-    `}
-  ${({ $margin }) =>
-    $margin &&
-    css`
-      margin: ${$margin};
-    `}
-  ${({ $width }) =>
-    $width &&
-    css`
-      width: ${$width};
-    `}
-  ${({ $height }) =>
-    $height &&
-    css`
-      height: ${$height};
-    `}
-  ${({ $backgroundColor }) =>
-    $backgroundColor &&
-    css`
-      background-color: ${$backgroundColor};
-    `}
-  ${({ $borderRadius }) =>
-    $borderRadius &&
-    css`
-      border-radius: ${$borderRadius};
-    `}
-  ${({ $border }) =>
-    $border &&
-    css`
-      border: ${$border};
-    `}
-  ${({ $display }) =>
-    $display &&
-    css`
-      display: ${$display};
-    `}
-  ${({ $boxShadow }) =>
-    $boxShadow &&
-    css`
-      box-shadow: ${$boxShadow};
-    `}
-  ${({ $overflow }) =>
-    $overflow &&
-    css`
-      overflow: ${$overflow};
-    `}
-  ${({ $textAlign }) =>
-    $textAlign &&
-    css`
-      text-align: ${$textAlign};
-    `}
-  ${({ $grow }) =>
-    $grow !== undefined &&
-    css`
-      flex-grow: ${$grow};
-    `}
-  ${({ $shrink }) =>
-    $shrink !== undefined &&
-    css`
-      flex-shrink: ${$shrink};
-    `}
-  ${({ $basis }) =>
-    $basis &&
-    css`
-      flex-basis: ${$basis};
-    `}
-  ${({ $alignSelf }) =>
-    $alignSelf &&
-    css`
-      align-self: ${$alignSelf};
-    `}
+// Create a mapping of prop names to CSS property names
+const propToCssProperty = {
+  // Space properties
+  padding: 'padding',
+  paddingTop: 'padding-top',
+  paddingRight: 'padding-right',
+  paddingBottom: 'padding-bottom',
+  paddingLeft: 'padding-left',
+  margin: 'margin',
+  marginTop: 'margin-top',
+  marginRight: 'margin-right',
+  marginBottom: 'margin-bottom',
+  marginLeft: 'margin-left',
+  gap: 'gap',
 
-  ${({ $justifyContent }) =>
-    $justifyContent &&
-    css`
-      justify-content: ${$justifyContent};
-    `}
-  ${({ $alignItems }) =>
-    $alignItems &&
-    css`
-      align-items: ${$alignItems};
-    `}
-  ${({ $maxWidth }) =>
-    $maxWidth &&
-    css`
-      max-width: ${$maxWidth};
-    `}
-  ${({ $maxHeight }) =>
-    $maxHeight &&
-    css`
-      max-height: ${$maxHeight};
-    `}
+  // Layout properties
+  width: 'width',
+  height: 'height',
+  maxWidth: 'max-width',
+  maxHeight: 'max-height',
+  display: 'display',
+  overflow: 'overflow',
+
+  // Flex properties
+  flexDirection: 'flex-direction',
+  justifyContent: 'justify-content',
+  alignItems: 'align-items',
+  alignSelf: 'align-self',
+  grow: 'flex-grow',
+  shrink: 'flex-shrink',
+  basis: 'flex-basis',
+
+  // Style properties
+  backgroundColor: 'background-color',
+  borderRadius: 'border-radius',
+  border: 'border',
+  boxShadow: 'box-shadow',
+  textAlign: 'text-align',
+} as const;
+
+// Create a type from the keys of propToCssProperty
+type StylePropName = keyof typeof propToCssProperty;
+
+// Define a type for CSS property values
+type CSSPropertyValue = string | number | undefined;
+
+// Create a type for the prefixed props
+type PrefixedProps = {
+  [K in StylePropName as `$${string & K}`]?: CSSPropertyValue;
+};
+
+// Create a type for the styled component props
+type StyledBoxProps = PrefixedProps & {
+  theme?: ReturnType<typeof useTheme>['theme'];
+} & Omit<React.HTMLAttributes<HTMLDivElement>, 'ref'>;
+
+// Function to transform props to CSS
+const transformProps = (
+  props: StyledBoxProps,
+): Record<string, CSSPropertyValue> => {
+  const cssProps: Record<string, CSSPropertyValue> = {};
+
+  for (const [key, value] of Object.entries(props)) {
+    if (key.startsWith('$') && value !== undefined) {
+      const propName = key.substring(1) as StylePropName;
+      const cssKey = propToCssProperty[propName];
+      if (cssKey) {
+        cssProps[cssKey] = value;
+      }
+    }
+  }
+
+  return cssProps;
+};
+
+const StyledBox = styled.div<StyledBoxProps>`
+  ${(props) => {
+    const cssProps = transformProps(props);
+    return Object.entries(cssProps).map(
+      ([property, value]) => css`
+        ${property}: ${value};
+      `,
+    );
+  }}
 `;
 
 /**
@@ -239,65 +155,29 @@ const StyledBox = styled.div<{
  * </Box>
  * ```
  */
-const Box = forwardRef<HTMLDivElement, BoxProps>(
-  (
-    {
-      padding,
-      margin,
-      width,
-      height,
-      backgroundColor,
-      borderRadius,
-      border,
-      display,
-      boxShadow,
-      overflow,
-      textAlign,
-      grow,
-      shrink,
-      basis,
-      alignSelf,
-      justifyContent,
-      alignItems,
-      maxWidth,
-      maxHeight,
-      children,
-      ...props
-    },
-    ref,
-  ) => {
-    const { theme } = useTheme();
+const Box = forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
+  const { theme } = useTheme();
+  const { children, ...rest } = props;
 
-    return (
-      <StyledBox
-        ref={ref}
-        $padding={padding}
-        $margin={margin}
-        $width={width}
-        $height={height}
-        $backgroundColor={backgroundColor}
-        $borderRadius={borderRadius}
-        $border={border}
-        $display={display}
-        $boxShadow={boxShadow}
-        $overflow={overflow}
-        $textAlign={textAlign}
-        $grow={grow}
-        $shrink={shrink}
-        $basis={basis}
-        $alignSelf={alignSelf}
-        $justifyContent={justifyContent}
-        $alignItems={alignItems}
-        $maxWidth={maxWidth}
-        $maxHeight={maxHeight}
-        theme={theme}
-        {...props}
-      >
-        {children}
-      </StyledBox>
-    );
-  },
-);
+  // Transform regular props to prefixed props for the styled component
+  const styledProps = Object.entries(rest).reduce<Record<string, unknown>>(
+    (acc, [key, value]) => {
+      if (Object.prototype.hasOwnProperty.call(propToCssProperty, key)) {
+        acc[`$${key}`] = value;
+      } else {
+        acc[key] = value;
+      }
+      return acc;
+    },
+    {},
+  );
+
+  return (
+    <StyledBox ref={ref} theme={theme} {...(styledProps as StyledBoxProps)}>
+      {children}
+    </StyledBox>
+  );
+});
 
 Box.displayName = 'Box';
 
