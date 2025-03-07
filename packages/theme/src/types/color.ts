@@ -26,4 +26,5 @@ export interface Colors {
     dark: string;
     contrastText: string;
   };
+  divider: string;
 }
