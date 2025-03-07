@@ -58,6 +58,51 @@ export interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
   overflow?: string;
 
   /**
+   * Text alignment
+   */
+  textAlign?: string;
+
+  /**
+   * Flex grow factor
+   */
+  grow?: number;
+
+  /**
+   * Flex shrink factor
+   */
+  shrink?: number;
+
+  /**
+   * Flex basis
+   */
+  basis?: string | number;
+
+  /**
+   * Justify content (for flex containers)
+   */
+  justifyContent?: string;
+
+  /**
+   * Align items (for flex containers)
+   */
+  alignItems?: string;
+
+  /**
+   * Align self (for flex items)
+   */
+  alignSelf?: string;
+
+  /**
+   * Maximum width
+   */
+  maxWidth?: string | number;
+
+  /**
+   * Maximum height
+   */
+  maxHeight?: string | number;
+
+  /**
    * The content of the box
    */
   children?: React.ReactNode;
@@ -74,6 +119,15 @@ const StyledBox = styled.div<{
   $display?: string;
   $boxShadow?: string;
   $overflow?: string;
+  $textAlign?: string;
+  $grow?: number;
+  $shrink?: number;
+  $basis?: string | number;
+  $alignSelf?: string;
+  $justifyContent?: string;
+  $alignItems?: string;
+  $maxWidth?: string | number;
+  $maxHeight?: string | number;
 }>`
   ${({ $padding }) =>
     $padding &&
@@ -125,6 +179,52 @@ const StyledBox = styled.div<{
     css`
       overflow: ${$overflow};
     `}
+  ${({ $textAlign }) =>
+    $textAlign &&
+    css`
+      text-align: ${$textAlign};
+    `}
+  ${({ $grow }) =>
+    $grow !== undefined &&
+    css`
+      flex-grow: ${$grow};
+    `}
+  ${({ $shrink }) =>
+    $shrink !== undefined &&
+    css`
+      flex-shrink: ${$shrink};
+    `}
+  ${({ $basis }) =>
+    $basis &&
+    css`
+      flex-basis: ${$basis};
+    `}
+  ${({ $alignSelf }) =>
+    $alignSelf &&
+    css`
+      align-self: ${$alignSelf};
+    `}
+
+  ${({ $justifyContent }) =>
+    $justifyContent &&
+    css`
+      justify-content: ${$justifyContent};
+    `}
+  ${({ $alignItems }) =>
+    $alignItems &&
+    css`
+      align-items: ${$alignItems};
+    `}
+  ${({ $maxWidth }) =>
+    $maxWidth &&
+    css`
+      max-width: ${$maxWidth};
+    `}
+  ${({ $maxHeight }) =>
+    $maxHeight &&
+    css`
+      max-height: ${$maxHeight};
+    `}
 `;
 
 /**
@@ -152,6 +252,15 @@ const Box = forwardRef<HTMLDivElement, BoxProps>(
       display,
       boxShadow,
       overflow,
+      textAlign,
+      grow,
+      shrink,
+      basis,
+      alignSelf,
+      justifyContent,
+      alignItems,
+      maxWidth,
+      maxHeight,
       children,
       ...props
     },
@@ -172,6 +281,15 @@ const Box = forwardRef<HTMLDivElement, BoxProps>(
         $display={display}
         $boxShadow={boxShadow}
         $overflow={overflow}
+        $textAlign={textAlign}
+        $grow={grow}
+        $shrink={shrink}
+        $basis={basis}
+        $alignSelf={alignSelf}
+        $justifyContent={justifyContent}
+        $alignItems={alignItems}
+        $maxWidth={maxWidth}
+        $maxHeight={maxHeight}
         theme={theme}
         {...props}
       >
