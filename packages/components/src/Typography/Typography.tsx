@@ -25,7 +25,6 @@ export type TypographyVariant =
   | 'overline'
   | 'label';
 
-// Update FontWeight type to match the actual keys in theme.typography.fontWeights
 type FontWeight =
   | 'hairline'
   | 'thin'
@@ -36,6 +35,8 @@ type FontWeight =
   | 'bold'
   | 'extrabold'
   | 'black';
+
+type FontSize = 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl';
 
 /**
  * Available text alignment options
@@ -85,6 +86,12 @@ export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
    * The color of the component
    */
   color?: string;
+
+  /**
+   * Font Size for the text
+   * @default 'base'
+   */
+  fontSize?: FontSize;
 
   /**
    * Font weight for the text
@@ -221,6 +228,7 @@ const StyledTypography = styled.p<{
   $gutterBottom: boolean;
   $color?: string;
   $weight?: FontWeight;
+  $fontSize?: FontSize;
   $numberOfLines?: number;
 }>`
   margin: 0;
@@ -233,6 +241,9 @@ const StyledTypography = styled.p<{
   ${({ theme, $weight }) =>
     $weight &&
     `font-weight: ${(theme as Theme).typography.fontWeights[$weight]};`}
+  ${({ theme, $fontSize }) =>
+    $fontSize &&
+    `font-size: ${(theme as Theme).typography.fontSizes[$fontSize]};`}
   ${({ $numberOfLines }) =>
     $numberOfLines &&
     `
@@ -267,6 +278,7 @@ const Typography = forwardRef<HTMLParagraphElement, TypographyProps>(
       gutterBottom = false,
       color,
       weight,
+      fontSize,
       numberOfLines,
       children,
       ...props
@@ -302,6 +314,7 @@ const Typography = forwardRef<HTMLParagraphElement, TypographyProps>(
         $gutterBottom={gutterBottom}
         $color={color}
         $weight={weight}
+        $fontSize={fontSize}
         $numberOfLines={numberOfLines}
         theme={theme}
         {...props}
