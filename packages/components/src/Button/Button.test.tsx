@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, test, expect, vi, beforeEach, afterEach } from 'vitest';
@@ -15,8 +14,7 @@ vi.mock('@modern-design-system/hooks', () => ({
 describe('Button Component', () => {
   // Setup default mock implementation
   beforeEach(() => {
-    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-    (useTheme as any).mockReturnValue({
+    (useTheme as jest.Mock).mockReturnValue({
       theme: {
         colors: {
           primary: {

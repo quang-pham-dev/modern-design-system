@@ -49,6 +49,7 @@ type StyleProps = {
   backgroundColor?: string;
   borderRadius?: string | number;
   border?: string;
+  borderColor?: string;
   borderBottom?: string;
   borderTop?: string;
   borderLeft?: string;
