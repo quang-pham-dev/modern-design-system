@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { describe, test, expect, vi } from 'vitest';
 import { Typography } from './index';
 import { useTheme } from '@modern-design-system/hooks';
+import '@testing-library/jest-dom';
 
 // Mock the useTheme hook
 vi.mock('@modern-design-system/hooks', () => ({
@@ -11,11 +12,44 @@ vi.mock('@modern-design-system/hooks', () => ({
 
 describe('Typography Component', () => {
   beforeEach(() => {
-    // Setup default mock implementation
+    // Setup default mock implementation with complete typography theme
     (useTheme as jest.Mock).mockReturnValue({
       theme: {
         typography: {
           fontFamily: 'Roboto, sans-serif',
+          fontSizes: {
+            xs: '0.75rem',
+            sm: '0.875rem',
+            base: '1rem',
+            lg: '1.25rem',
+            xl: '1.5rem',
+            '2xl': '2rem',
+            '3xl': '2.5rem',
+          },
+          fontWeights: {
+            normal: 400,
+            medium: 500,
+            bold: 700,
+          },
+          lineHeights: {
+            normal: 1.5,
+            tight: 1.25,
+            relaxed: 1.75,
+          },
+        },
+        colors: {
+          primary: {
+            main: '#1976d2',
+            contrastText: '#ffffff',
+          },
+          error: {
+            main: '#f44336',
+            contrastText: '#ffffff',
+          },
+          text: {
+            primary: '#212121',
+            secondary: '#757575',
+          },
         },
       },
     });
