@@ -1,6 +1,7 @@
 export * from './Button';
 export * from './Typography';
 export * from './Box';
+export * from './Checkbox';
 export * from './Divider';
 export * from './Flex';
 export * from './Grid';
