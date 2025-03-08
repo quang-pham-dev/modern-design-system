@@ -1,6 +1,5 @@
 import type { StorybookConfig } from '@storybook/react-vite';
 import { join, dirname } from 'node:path';
-// Replace the default import with a named import
 import * as path from 'node:path';
 
 /**
@@ -13,7 +12,6 @@ function getAbsolutePath(value: string) {
 
 const config: StorybookConfig = {
   stories: [
-    // Import stories from our core package
     '../../../packages/components/src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
   ],
   addons: [
@@ -22,9 +20,18 @@ const config: StorybookConfig = {
     getAbsolutePath('@chromatic-com/storybook'),
     getAbsolutePath('@storybook/experimental-addon-test'),
   ],
+  core: {
+    builder: '@storybook/builder-vite',
+  },
   framework: {
     name: getAbsolutePath('@storybook/react-vite'),
     options: {},
+  },
+  babel: async (options: { plugins: string[] }) => {
+    options.plugins = options.plugins || [];
+    // Make sure @emotion/babel-plugin is first in the plugins list
+    options.plugins.unshift('@emotion/babel-plugin');
+    return options;
   },
   viteFinal: async (config) => {
     config.resolve = config.resolve || {};
@@ -43,6 +50,25 @@ const config: StorybookConfig = {
         __dirname,
         '../../../packages/hooks/src',
       ),
+    };
+
+    // Add Emotion plugin configuration for Vite
+    config.plugins = config.plugins || [];
+    config.optimizeDeps = {
+      ...config.optimizeDeps,
+      include: [
+        ...(config.optimizeDeps?.include || []),
+        '@emotion/styled',
+        '@emotion/react',
+      ],
+    };
+
+    // Add esbuild configuration for JSX
+    config.esbuild = {
+      ...config.esbuild,
+      jsxInject: `import React from 'react'`,
+      jsxFactory: 'React.createElement',
+      jsxFragment: 'React.Fragment',
     };
 
     return config;
