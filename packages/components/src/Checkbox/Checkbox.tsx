@@ -1,6 +1,5 @@
-import React, { forwardRef } from 'react';
+import { forwardRef, useRef, useEffect } from 'react';
 import styled from '@emotion/styled';
-
 import { useTheme } from '@modern-design-system/hooks';
 
 import type { Theme } from '@modern-design-system/theme';
@@ -185,9 +184,9 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     const { theme } = useTheme();
 
     // Handle the indeterminate property which isn't a standard HTML attribute
-    const inputRef = React.useRef<HTMLInputElement>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
 
-    React.useEffect(() => {
+    useEffect(() => {
       if (inputRef.current) {
         inputRef.current.indeterminate = indeterminate;
       }

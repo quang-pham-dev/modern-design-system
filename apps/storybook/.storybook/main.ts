@@ -20,17 +20,12 @@ const config: StorybookConfig = {
     getAbsolutePath('@chromatic-com/storybook'),
     getAbsolutePath('@storybook/experimental-addon-test'),
   ],
-  core: {
-    builder: '@storybook/builder-vite',
-  },
   framework: {
     name: getAbsolutePath('@storybook/react-vite'),
     options: {},
   },
   babel: async (options: { plugins: string[] }) => {
     options.plugins = options.plugins || [];
-    // Make sure @emotion/babel-plugin is first in the plugins list
-    options.plugins.unshift('@emotion/babel-plugin');
     return options;
   },
   viteFinal: async (config) => {
@@ -52,8 +47,7 @@ const config: StorybookConfig = {
       ),
     };
 
-    // Add Emotion plugin configuration for Vite
-    config.plugins = config.plugins || [];
+    // Add this to support Emotion
     config.optimizeDeps = {
       ...config.optimizeDeps,
       include: [
@@ -63,18 +57,10 @@ const config: StorybookConfig = {
       ],
     };
 
-    // Add esbuild configuration for JSX
-    config.esbuild = {
-      ...config.esbuild,
-      jsxInject: `import React from 'react'`,
-      jsxFactory: 'React.createElement',
-      jsxFragment: 'React.Fragment',
-    };
+    // Add this to support Emotion's babel plugin
+    config.plugins = [...(config.plugins || [])];
 
     return config;
-  },
-  docs: {
-    autodocs: 'tag',
   },
 };
 

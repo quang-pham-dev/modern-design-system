@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import type React from 'react';
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { Checkbox } from './index';
 import { Box } from '../Box';
@@ -139,7 +139,6 @@ export const WithoutLabel: Story = {
 
 export const Controlled: Story = {
   render: () => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [checked, setChecked] = useState(false);
 
     return (
@@ -159,12 +158,10 @@ export const Controlled: Story = {
 
 export const IndeterminateExample: Story = {
   render: () => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [checkedItems, setCheckedItems] = useState([false, false, false]);
 
-     
     const allChecked = checkedItems.every(Boolean);
-     
+
     const isIndeterminate = checkedItems.some(Boolean) && !allChecked;
 
     const handleParentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -210,9 +207,7 @@ export const IndeterminateExample: Story = {
 
 export const WithFormValidation: Story = {
   render: () => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [checked, setChecked] = useState(false);
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [submitted, setSubmitted] = useState(false);
 
     const handleSubmit = () => {
