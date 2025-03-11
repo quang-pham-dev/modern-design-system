@@ -13,3 +13,5 @@ export * from './Switch';
 export * from './FormControl';
 export * from './Icon';
 export * from './Alert';
+export * from './Toast';
+export * from './Progress';

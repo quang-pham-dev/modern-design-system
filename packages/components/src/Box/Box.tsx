@@ -37,6 +37,7 @@ type LayoutProps = {
 };
 
 type FlexProps = {
+  flex?: number;
   flexDirection?: string;
   justifyContent?: string;
   alignItems?: string;
@@ -44,6 +45,7 @@ type FlexProps = {
   grow?: number;
   shrink?: number;
   basis?: string | number;
+  flexWrap?: string;
 };
 
 type StyleProps = {
