@@ -50,6 +50,16 @@ describe('Stack Component', () => {
         borderRadius: {
           sm: 4,
         },
+        // Add spacing to the mock theme
+        spacing: {
+          xs: 4,
+          sm: 8,
+          md: 16,
+          lg: 24,
+          xl: 32,
+          '2xl': 48,
+          '3xl': 64,
+        },
       },
     });
   });
@@ -133,7 +143,7 @@ describe('Stack Component', () => {
 
     const stack = screen.getByTestId('stack');
     expect(stack).toHaveStyle({
-      gap: '16',
+      gap: '16px',
     });
   });
 

@@ -8,6 +8,8 @@ import {
 } from 'react';
 
 import { Flex } from '../Flex';
+import { useTheme } from '@modern-design-system/hooks';
+import { formatSpacing } from '@modern-design-system/utils';
 
 import type { FlexProps } from '../Flex';
 
@@ -50,71 +52,78 @@ export interface StackProps extends Omit<FlexProps, 'direction'> {
  * </Stack>
  * ```
  */
-const Stack = forwardRef<HTMLDivElement, StackProps>(
-  (
-    {
-      direction = 'vertical',
-      spacing = 0,
-      shouldWrapChildren = false,
-      divider,
-      children,
-      ...props
-    },
-    ref,
-  ) => {
-    // Convert direction to flex-direction
-    const flexDirection = direction === 'vertical' ? 'column' : 'row';
+const Stack = forwardRef<HTMLDivElement, StackProps>((props, ref) => {
+  const {
+    direction = 'vertical',
+    spacing = 0,
+    shouldWrapChildren = false,
+    divider,
+    children,
+    ...restProps
+  } = props;
 
-    // Process children to add spacing and dividers
-    const childrenArray = Children.toArray(children).filter(
-      (child) =>
-        isValidElement(child) ||
-        typeof child === 'string' ||
-        typeof child === 'number',
-    );
+  const { theme } = useTheme();
 
-    const processedChildren = childrenArray.map((child, index) => {
-      // Skip processing for the last child
-      if (index === childrenArray.length - 1) {
-        return shouldWrapChildren && isValidElement(child) ? (
-          <div key={`last-child-${index.toString()}`}>{child}</div>
-        ) : (
-          child
-        );
-      }
+  // Format spacing using the utility function
+  const formattedSpacing = formatSpacing(spacing, theme);
 
-      // Create a fragment with child and optional divider
-      const currentChild =
-        shouldWrapChildren && isValidElement(child) ? (
-          <div key={`child-${index.toString()}`}>{child}</div>
-        ) : (
-          child
-        );
+  // Convert direction to flex-direction
+  const flexDirection = direction === 'vertical' ? 'column' : 'row';
 
-      // Add divider if provided
-      if (divider && index < childrenArray.length - 1) {
-        const clonedDivider = isValidElement(divider)
-          ? cloneElement(divider, { key: `divider-${index.toString()}` })
-          : null;
+  // Process children to add spacing and dividers
+  const childrenArray = Children.toArray(children).filter(
+    (child) =>
+      isValidElement(child) ||
+      typeof child === 'string' ||
+      typeof child === 'number',
+  );
 
-        return (
-          <Fragment key={`stack-${index.toString()}`}>
-            {currentChild}
-            {clonedDivider}
-          </Fragment>
-        );
-      }
+  const processedChildren = childrenArray.map((child, index) => {
+    // Skip processing for the last child
+    if (index === childrenArray.length - 1) {
+      return shouldWrapChildren && isValidElement(child) ? (
+        <div key={`last-child-${index.toString()}`}>{child}</div>
+      ) : (
+        child
+      );
+    }
 
-      return currentChild;
-    });
+    // Create a fragment with child and optional divider
+    const currentChild =
+      shouldWrapChildren && isValidElement(child) ? (
+        <div key={`child-${index.toString()}`}>{child}</div>
+      ) : (
+        child
+      );
 
-    return (
-      <Flex ref={ref} direction={flexDirection} gap={spacing} {...props}>
-        {processedChildren}
-      </Flex>
-    );
-  },
-);
+    // Add divider if provided
+    if (divider && index < childrenArray.length - 1) {
+      const clonedDivider = isValidElement(divider)
+        ? cloneElement(divider, { key: `divider-${index.toString()}` })
+        : null;
+
+      return (
+        <Fragment key={`stack-${index.toString()}`}>
+          {currentChild}
+          {clonedDivider}
+        </Fragment>
+      );
+    }
+
+    return currentChild;
+  });
+
+  return (
+    <Flex
+      ref={ref}
+      direction={flexDirection}
+      gap={formattedSpacing}
+      {...restProps}
+    >
+      {processedChildren}
+    </Flex>
+  );
+});
 
 Stack.displayName = 'Stack';
 

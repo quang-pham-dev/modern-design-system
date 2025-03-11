@@ -10,3 +10,4 @@ export * from './Select';
 export * from './Stack';
 export * from './Textarea';
 export * from './Switch';
+export * from './FormControl';
