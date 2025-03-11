@@ -11,3 +11,5 @@ export * from './Stack';
 export * from './Textarea';
 export * from './Switch';
 export * from './FormControl';
+export * from './Icon';
+export * from './Alert';
