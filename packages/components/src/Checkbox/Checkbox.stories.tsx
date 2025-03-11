@@ -110,7 +110,7 @@ export const Errors: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <Box display="flex" flexDirection="column" gap="16px">
+    <Box display="flex" flexDirection="column" gap={16}>
       <Checkbox size="sm" label="Small checkbox" />
       <Checkbox size="md" label="Medium checkbox" />
       <Checkbox size="lg" label="Large checkbox" />

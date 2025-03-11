@@ -2,23 +2,24 @@ import { forwardRef } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
+import { spacingProperty } from '@modern-design-system/utils';
 import { useTheme } from '@modern-design-system/hooks';
 
 import type React from 'react';
+import type { SpacingValue } from '@modern-design-system/theme';
 
-// Define property groups for better organization
 type SpaceProps = {
-  padding?: string | number;
-  paddingTop?: string | number;
-  paddingRight?: string | number;
-  paddingBottom?: string | number;
-  paddingLeft?: string | number;
-  margin?: string | number;
-  marginTop?: string | number;
-  marginRight?: string | number;
-  marginBottom?: string | number;
-  marginLeft?: string | number;
-  gap?: string | number;
+  padding?: SpacingValue;
+  paddingTop?: SpacingValue;
+  paddingRight?: SpacingValue;
+  paddingBottom?: SpacingValue;
+  paddingLeft?: SpacingValue;
+  margin?: SpacingValue;
+  marginTop?: SpacingValue;
+  marginRight?: SpacingValue;
+  marginBottom?: SpacingValue;
+  marginLeft?: SpacingValue;
+  gap?: SpacingValue;
 };
 
 type LayoutProps = {
@@ -108,6 +109,7 @@ const propToCssProperty = {
   backgroundColor: 'background-color',
   borderRadius: 'border-radius',
   border: 'border',
+  borderColor: 'border-color',
   borderBottom: 'border-bottom',
   borderTop: 'border-top',
   borderLeft: 'border-left',
@@ -132,34 +134,53 @@ type StyledBoxProps = PrefixedProps & {
   theme?: ReturnType<typeof useTheme>['theme'];
 } & Omit<React.HTMLAttributes<HTMLDivElement>, 'ref'>;
 
-// Function to transform props to CSS
-const transformProps = (
-  props: StyledBoxProps,
-): Record<string, CSSPropertyValue> => {
-  const cssProps: Record<string, CSSPropertyValue> = {};
-
-  for (const [key, value] of Object.entries(props)) {
-    if (key.startsWith('$') && value !== undefined) {
-      const propName = key.substring(1) as StylePropName;
-      const cssKey = propToCssProperty[propName];
-      if (cssKey) {
-        cssProps[cssKey] = value;
-      }
-    }
-  }
-
-  return cssProps;
-};
-
 const StyledBox = styled.div<StyledBoxProps>`
-  ${(props) => {
-    const cssProps = transformProps(props);
-    return Object.entries(cssProps).map(
-      ([property, value]) => css`
-        ${property}: ${value};
-      `,
-    );
-  }}
+  ${(props) => css`
+    ${spacingProperty('padding', props.$padding)}
+    ${spacingProperty('padding-top', props.$paddingTop)}
+    ${spacingProperty('padding-right', props.$paddingRight)}
+    ${spacingProperty('padding-bottom', props.$paddingBottom)}
+    ${spacingProperty('padding-left', props.$paddingLeft)}
+    ${spacingProperty('margin', props.$margin)}
+    ${spacingProperty('margin-top', props.$marginTop)}
+    ${spacingProperty('margin-right', props.$marginRight)}
+    ${spacingProperty('margin-bottom', props.$marginBottom)}
+    ${spacingProperty('margin-left', props.$marginLeft)}
+    ${spacingProperty('gap', props.$gap)}
+    ${spacingProperty('width', props.$width)}
+    ${spacingProperty('height', props.$height)}
+    ${spacingProperty('max-width', props.$maxWidth)}
+    ${spacingProperty('max-height', props.$maxHeight)}
+    ${spacingProperty('top', props.$top)}
+    ${spacingProperty('bottom', props.$bottom)}
+    ${spacingProperty('left', props.$left)}
+    ${spacingProperty('right', props.$right)}
+
+    // Flex properties
+    flex-direction: ${props.$flexDirection};
+    justify-content: ${props.$justifyContent};
+    align-items: ${props.$alignItems};
+    align-self: ${props.$alignSelf};
+    flex-grow: ${props.$grow};
+    flex-shrink: ${props.$shrink};
+    flex-basis: ${props.$basis};
+
+    // Style properties
+    background-color: ${props.$backgroundColor};
+    border-radius: ${props.$borderRadius};
+    border: ${props.$border};
+    border-color: ${props.$borderColor};
+    border-bottom: ${props.$borderBottom};
+    border-top: ${props.$borderTop};
+    border-left: ${props.$borderLeft};
+    border-right: ${props.$borderRight};
+    box-shadow: ${props.$boxShadow};
+    text-align: ${props.$textAlign};
+
+    display: ${props.$display};
+    overflow: ${props.$overflow};
+    position: ${props.$position};
+  `}
 `;
 
 /**
