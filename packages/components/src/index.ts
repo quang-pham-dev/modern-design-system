@@ -15,3 +15,4 @@ export * from './Icon';
 export * from './Alert';
 export * from './Toast';
 export * from './Progress';
+export * from './Skeleton';
