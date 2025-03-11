@@ -43,6 +43,7 @@
   "dependencies": {
     "@modern-design-system/hooks": "workspace:*",
     "@modern-design-system/theme": "workspace:*",
+    "@modern-design-system/utils": "workspace:*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   }

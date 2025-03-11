@@ -1,24 +1,13 @@
 import { createContext, useContext, useState } from 'react';
 
 import type React from 'react';
-import type { SelectOption } from './types';
+import type { SelectOption, SelectContextType } from './types';
 
-interface SelectContextValue {
-  isOpen: boolean;
-  setIsOpen: (isOpen: boolean) => void;
-  selectedValue?: string;
-  onChange: (value: string) => void;
-  options: SelectOption[];
-  disabled?: boolean;
-  containerWidth: number;
-  setContainerWidth: (width: number) => void;
-}
-
-const SelectContext = createContext<SelectContextValue | undefined>(undefined);
+const SelectContext = createContext<SelectContextType | undefined>(undefined);
 
 export const SelectProvider: React.FC<{
   children: React.ReactNode;
-  value: SelectContextValue;
+  value: SelectContextType;
 }> = ({ children, value }) => {
   return (
     <SelectContext.Provider value={value}>{children}</SelectContext.Provider>
