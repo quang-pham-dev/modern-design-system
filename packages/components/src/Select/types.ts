@@ -86,3 +86,20 @@ export interface SelectOptionProps {
   option: SelectOption;
   className?: string;
 }
+
+// Add the SelectContextType export
+export interface SelectContextType {
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+  selectedValue?: string;
+  onChange: (value: string) => void;
+  options: SelectOption[];
+  disabled?: boolean;
+  containerWidth: number;
+  setContainerWidth: (width: number) => void;
+  size?: 'sm' | 'md' | 'lg';
+  variant?: 'outlined' | 'filled' | 'standard';
+  error?: boolean;
+  fullWidth?: boolean;
+  placeholder?: string;
+}

@@ -192,6 +192,9 @@ importers:
       '@modern-design-system/theme':
         specifier: workspace:*
         version: link:../theme
+      '@modern-design-system/utils':
+        specifier: workspace:*
+        version: link:../utils
       react:
         specifier: ^19.0.0
         version: 19.0.0
