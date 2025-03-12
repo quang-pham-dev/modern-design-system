@@ -21,3 +21,4 @@ export * from './Breadcrumbs';
 export * from './Pagination';
 export * from './Avatar';
 export * from './Card';
+export * from './Badge';

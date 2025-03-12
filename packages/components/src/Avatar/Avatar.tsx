@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, useState } from 'react';
 import styled from '@emotion/styled';
 import { css, type SerializedStyles } from '@emotion/react';
 
@@ -93,6 +93,12 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
     ref,
   ) => {
     const { theme } = useTheme();
+    const [imgError, setImgError] = useState(false);
+
+    const handleOnAvatarError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+      e.currentTarget.style.display = 'none';
+      setImgError(true);
+    };
 
     return (
       <AvatarRoot
@@ -102,14 +108,8 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
         theme={theme}
         {...props}
       >
-        {src ? (
-          <AvatarImg
-            src={src}
-            alt={alt}
-            onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
-              e.currentTarget.style.display = 'none';
-            }}
-          />
+        {src && !imgError ? (
+          <AvatarImg src={src} alt={alt} onError={handleOnAvatarError} />
         ) : (
           children
         )}

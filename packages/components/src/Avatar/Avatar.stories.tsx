@@ -76,9 +76,7 @@ export const Variants: Story = {
 export const WithFallback: Story = {
   render: () => (
     <Box display="flex" alignItems="center" gap="16px">
-      <Avatar src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80">
-        JD
-      </Avatar>
+      <Avatar src="invalid-image.jpg">JD</Avatar>
     </Box>
   ),
 };
