@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import styled from '@emotion/styled';
-import { css } from '@emotion/react';
+import { css, type SerializedStyles } from '@emotion/react';
 
 import { spacingProperty } from '@modern-design-system/utils';
 import { useTheme } from '@modern-design-system/hooks';
@@ -59,6 +59,10 @@ type StyleProps = {
   borderRight?: string;
   boxShadow?: string;
   textAlign?: string;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles
+   */
+  sx?: React.CSSProperties | SerializedStyles | Record<string, unknown>;
 };
 
 export interface BoxProps

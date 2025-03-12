@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { Pagination } from './Pagination';
+import { Pagination } from './index';
 import { Box } from '../Box';
 import { Typography } from '../Typography';
 

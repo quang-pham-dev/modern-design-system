@@ -19,3 +19,5 @@ export * from './Skeleton';
 export * from './Tabs';
 export * from './Breadcrumbs';
 export * from './Pagination';
+export * from './Avatar';
+export * from './Card';
