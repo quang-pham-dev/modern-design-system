@@ -10,7 +10,12 @@ import type React from 'react';
 /**
  * Available button variants that determine the visual style
  */
-export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'text';
+export type ButtonVariant =
+  | 'primary'
+  | 'secondary'
+  | 'outline'
+  | 'text'
+  | 'ghost';
 
 /**
  * Button size options that control dimensions and typography
@@ -175,6 +180,15 @@ const getVariantStyles = (
       return css`
         background-color: transparent;
         color: ${currentColor.main};
+        &:hover:not(:disabled) {
+          background-color: ${currentColor.light}1A;
+        }
+      `;
+    case 'ghost':
+      return css`
+        background-color: transparent;
+        color: ${currentColor.main};
+        padding: ${theme.spacing.xs}px;
         &:hover:not(:disabled) {
           background-color: ${currentColor.light}1A;
         }
