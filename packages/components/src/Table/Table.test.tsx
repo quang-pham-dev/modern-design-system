@@ -41,7 +41,7 @@ const TestTable = () => (
 );
 
 describe('Table', () => {
-  it('renders correctly', () => {
+  test('renders correctly', () => {
     render(<TestTable />);
     expect(screen.getByText('Name')).toBeInTheDocument();
     expect(screen.getByText('Age')).toBeInTheDocument();
@@ -50,7 +50,7 @@ describe('Table', () => {
     expect(screen.getAllByText('Footer')).toHaveLength(2);
   });
 
-  it('renders with different variants', () => {
+  test('renders with different variants', () => {
     const { rerender } = render(
       <ThemeProvider>
         <Table variant="standard" data-testid="table" />
@@ -82,7 +82,7 @@ describe('Table', () => {
     );
   });
 
-  it('renders with different sizes', () => {
+  test('renders with different sizes', () => {
     const { rerender } = render(
       <ThemeProvider>
         <Table size="sm" data-testid="table" />
@@ -105,7 +105,7 @@ describe('Table', () => {
     expect(screen.getByTestId('table')).toHaveAttribute('data-size', 'lg');
   });
 
-  it('renders with different densities', () => {
+  test('renders with different densities', () => {
     const { rerender } = render(
       <ThemeProvider>
         <Table density="default" data-testid="table" />
@@ -137,7 +137,7 @@ describe('Table', () => {
     );
   });
 
-  it('renders with striped rows', () => {
+  test('renders with striped rows', () => {
     render(
       <ThemeProvider>
         <Table striped data-testid="table" />
@@ -146,7 +146,7 @@ describe('Table', () => {
     expect(screen.getByTestId('table')).toHaveAttribute('data-striped', 'true');
   });
 
-  it('renders with hover effect', () => {
+  test('renders with hover effect', () => {
     render(
       <ThemeProvider>
         <Table hover data-testid="table" />
@@ -155,7 +155,7 @@ describe('Table', () => {
     expect(screen.getByTestId('table')).toHaveAttribute('data-hover', 'true');
   });
 
-  it('renders with borders', () => {
+  test('renders with borders', () => {
     render(
       <ThemeProvider>
         <Table bordered data-testid="table" />
@@ -167,7 +167,7 @@ describe('Table', () => {
     );
   });
 
-  it('renders with sticky header', () => {
+  test('renders with sticky header', () => {
     render(
       <ThemeProvider>
         <Table stickyHeader data-testid="table" />
@@ -179,7 +179,7 @@ describe('Table', () => {
     );
   });
 
-  it('applies custom styles via sx prop', () => {
+  test('applies custom styles via sx prop', () => {
     render(
       <ThemeProvider>
         <Table
@@ -196,7 +196,7 @@ describe('Table', () => {
     expect(table).toBeInTheDocument();
   });
 
-  it('renders with all props combined', () => {
+  test('renders with all props combined', () => {
     render(
       <ThemeProvider>
         <Table
@@ -222,7 +222,7 @@ describe('Table', () => {
     expect(table).toHaveAttribute('data-sticky-header', 'true');
   });
 
-  it('forwards ref correctly', () => {
+  test('forwards ref correctly', () => {
     const ref = React.createRef<HTMLTableElement>();
     render(
       <ThemeProvider>
@@ -238,7 +238,7 @@ describe('Table', () => {
 
 // Test TableContainer component
 describe('TableContainer', () => {
-  it('renders correctly', () => {
+  test('renders correctly', () => {
     render(
       <ThemeProvider>
         <TableContainer data-testid="container">
@@ -257,7 +257,7 @@ describe('TableContainer', () => {
     expect(screen.getByText('Content')).toBeInTheDocument();
   });
 
-  it('applies maxHeight when provided', () => {
+  test('applies maxHeight when provided', () => {
     render(
       <ThemeProvider>
         <TableContainer maxHeight={300} data-testid="container" />
@@ -271,7 +271,7 @@ describe('TableContainer', () => {
 
 // Test TableHead component
 describe('TableHead', () => {
-  it('renders correctly', () => {
+  test('renders correctly', () => {
     render(
       <ThemeProvider>
         <Table>
@@ -291,7 +291,7 @@ describe('TableHead', () => {
 
 // Test TableBody component
 describe('TableBody', () => {
-  it('renders correctly', () => {
+  test('renders correctly', () => {
     render(
       <ThemeProvider>
         <Table>
@@ -311,7 +311,7 @@ describe('TableBody', () => {
 
 // Test TableRow component
 describe('TableRow', () => {
-  it('renders correctly', () => {
+  test('renders correctly', () => {
     render(
       <ThemeProvider>
         <Table>
@@ -328,7 +328,7 @@ describe('TableRow', () => {
     expect(screen.getByText('Content')).toBeInTheDocument();
   });
 
-  it('applies selected state', () => {
+  test('applies selected state', () => {
     render(
       <ThemeProvider>
         <Table>
@@ -348,7 +348,7 @@ describe('TableRow', () => {
 
 // Test TableCell component
 describe('TableCell', () => {
-  it('renders correctly', () => {
+  test('renders correctly', () => {
     render(
       <ThemeProvider>
         <Table>
@@ -365,7 +365,7 @@ describe('TableCell', () => {
     expect(screen.getByText('Content')).toBeInTheDocument();
   });
 
-  it('renders as header cell when header prop is true', () => {
+  test('renders as header cell when header prop is true', () => {
     render(
       <ThemeProvider>
         <Table>
@@ -385,7 +385,7 @@ describe('TableCell', () => {
     expect(screen.getByText('Header')).toBeInTheDocument();
   });
 
-  it('applies different alignments', () => {
+  test('applies different alignments', () => {
     const { rerender } = render(
       <ThemeProvider>
         <Table>
@@ -438,7 +438,7 @@ describe('TableCell', () => {
 
 // Test TableFooter component
 describe('TableFooter', () => {
-  it('renders correctly', () => {
+  test('renders correctly', () => {
     render(
       <ThemeProvider>
         <Table>
