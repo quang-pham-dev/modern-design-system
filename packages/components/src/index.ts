@@ -23,3 +23,5 @@ export * from './Avatar';
 export * from './Card';
 export * from './Badge';
 export * from './List';
+export * from './Table';
+export * from './Modal';

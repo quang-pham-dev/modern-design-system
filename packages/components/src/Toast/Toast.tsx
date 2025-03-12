@@ -140,12 +140,16 @@ const ToastRoot = styled.div<{
   }}
 `;
 
-const ToastContent = styled.div`
+const ToastContent = styled.div<{
+  theme: Theme;
+}>`
   flex: 1;
   margin-left: ${({ theme }) => getSpacing(theme, 'sm', 8)};
 `;
 
-const CloseButton = styled.button`
+const CloseButton = styled.button<{
+  theme: Theme;
+}>`
   background: none;
   border: none;
   cursor: pointer;
@@ -218,7 +222,7 @@ const Toast = forwardRef<HTMLDivElement, ToastProps>(
         <Box display="flex" alignItems="flex-start">
           <Icon name={getToastIcon(variant)} size="md" />
         </Box>
-        <ToastContent>
+        <ToastContent theme={theme}>
           {title && (
             <Typography variant="subtitle1" gutterBottom>
               {title}
@@ -227,7 +231,11 @@ const Toast = forwardRef<HTMLDivElement, ToastProps>(
           <Typography variant="body2">{children}</Typography>
         </ToastContent>
         {closable && (
-          <CloseButton onClick={onClose} aria-label="Close notification">
+          <CloseButton
+            theme={theme}
+            onClick={onClose}
+            aria-label="Close notification"
+          >
             <Icon name="times" size="sm" />
           </CloseButton>
         )}

@@ -18,17 +18,17 @@ describe('Switch Component', () => {
     mockOnChange.mockReset();
   });
 
-  it('renders correctly', () => {
+  test('renders correctly', () => {
     renderWithTheme(<Switch data-testid="switch" onChange={mockOnChange} />);
     expect(screen.getByTestId('switch')).toBeInTheDocument();
   });
 
-  it('renders with label', () => {
+  test('renders with label', () => {
     renderWithTheme(<Switch label="Test Label" onChange={mockOnChange} />);
     expect(screen.getByText('Test Label')).toBeInTheDocument();
   });
 
-  it('handles checked state', () => {
+  test('handles checked state', () => {
     renderWithTheme(
       <Switch data-testid="switch" checked onChange={mockOnChange} />,
     );
@@ -36,7 +36,7 @@ describe('Switch Component', () => {
     expect(switchInput).toBeChecked();
   });
 
-  it('handles disabled state', () => {
+  test('handles disabled state', () => {
     renderWithTheme(
       <Switch data-testid="switch" disabled onChange={mockOnChange} />,
     );
@@ -44,7 +44,7 @@ describe('Switch Component', () => {
     expect(switchInput).toBeDisabled();
   });
 
-  it('calls onChange when clicked', () => {
+  test('calls onChange when clicked', () => {
     const handleChange = vi.fn();
     renderWithTheme(<Switch data-testid="switch" onChange={handleChange} />);
 
@@ -53,7 +53,7 @@ describe('Switch Component', () => {
     expect(handleChange).toHaveBeenCalledTimes(1);
   });
 
-  it('renders in different sizes', () => {
+  test('renders in different sizes', () => {
     const { rerender } = renderWithTheme(
       <Switch data-testid="switch" size="sm" onChange={mockOnChange} />,
     );
@@ -76,7 +76,7 @@ describe('Switch Component', () => {
     expect(screen.getByTestId('switch')).toBeInTheDocument();
   });
 
-  it('renders in error state', () => {
+  test('renders in error state', () => {
     renderWithTheme(
       <Switch data-testid="switch" error onChange={mockOnChange} />,
     );
