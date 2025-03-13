@@ -3,12 +3,11 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
 import { useTheme } from '@modern-design-system/hooks';
-import { getColor } from '@modern-design-system/utils';
+import { getColor, processSxProp } from '@modern-design-system/utils';
 
 import type React from 'react';
 import type { Theme } from '@modern-design-system/theme';
 import type { SerializedStyles } from '@emotion/react';
-import { processSxProp } from './helper';
 
 export interface TableFooterProps
   extends React.HTMLAttributes<HTMLTableSectionElement> {

@@ -26,3 +26,4 @@ export * from './List';
 export * from './Table';
 export * from './Modal';
 export * from './DatePicker';
+export * from './Slider';
