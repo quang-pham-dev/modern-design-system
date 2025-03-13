@@ -1,9 +1,9 @@
 import { forwardRef } from 'react';
 import styled from '@emotion/styled';
 
+import { processSxProp } from '@modern-design-system/utils';
 import type React from 'react';
 import type { SerializedStyles } from '@emotion/react';
-import { processSxProp } from './helper';
 
 type SxProp = React.CSSProperties | SerializedStyles | Record<string, unknown>;
 
