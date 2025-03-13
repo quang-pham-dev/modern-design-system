@@ -28,3 +28,4 @@ export * from './Modal';
 export * from './DatePicker';
 export * from './Slider';
 export * from './Accordion';
+export * from './Image';
