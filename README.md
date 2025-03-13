@@ -24,8 +24,8 @@ This project is a monorepo built with Turborepo that provides a robust foundatio
 
 ### Packages
 
-- `@modern-design-system/core`: Core React components and utilities
-- `@modern-design-system/tokens`: Design tokens and theming system
+- `@modern-design-system/components`: Core React components library
+- `@modern-design-system/theme`: Design tokens and theming system
 - `@modern-design-system/hooks`: Custom React hooks collection
 - `@modern-design-system/utils`: Shared utility functions
 - `@modern-design-system/eslint-config`: ESLint configurations
