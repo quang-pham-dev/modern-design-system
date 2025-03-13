@@ -29,3 +29,4 @@ export * from './DatePicker';
 export * from './Slider';
 export * from './Accordion';
 export * from './Image';
+export * from './Tag';
