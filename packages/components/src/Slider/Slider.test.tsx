@@ -108,26 +108,26 @@ describe('Slider', () => {
       </ThemeProvider>,
     );
 
-    const track = screen.getByTestId('slider-track');
-    track.focus();
+    const thumb = screen.getByTestId('slider-thumb');
+    thumb.focus();
 
     // Arrow right should increase value by step
-    fireEvent.keyDown(track, { key: 'ArrowRight' });
+    fireEvent.keyDown(thumb, { key: 'ArrowRight' });
     expect(onChange).toHaveBeenCalledWith(60);
 
     // Arrow left should decrease value by step
     onChange.mockClear();
-    fireEvent.keyDown(track, { key: 'ArrowLeft' });
-    expect(onChange).toHaveBeenCalledWith(40);
+    fireEvent.keyDown(thumb, { key: 'ArrowLeft' });
+    expect(onChange).toHaveBeenCalledWith(50);
 
     // Home should set to min value
     onChange.mockClear();
-    fireEvent.keyDown(track, { key: 'Home' });
+    fireEvent.keyDown(thumb, { key: 'Home' });
     expect(onChange).toHaveBeenCalledWith(0);
 
     // End should set to max value
     onChange.mockClear();
-    fireEvent.keyDown(track, { key: 'End' });
+    fireEvent.keyDown(thumb, { key: 'End' });
     expect(onChange).toHaveBeenCalledWith(100);
   });
 
